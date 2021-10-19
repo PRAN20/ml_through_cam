@@ -1,1 +1,3 @@
-# ml_through_cam
+# ML_THROUGH_CAM
+
+This code draws on live cam. Give it a go.
