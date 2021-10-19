@@ -23,12 +23,8 @@ while True:
         break
 
 stp = 0
-
 old_pts = np.array([[x, y]], dtype=np.float32).reshape(-1,1,2)
-
-
 mask = np.zeros_like(inp_img)
-
 while True:
     _, new_inp_img = cap.read()
     new_inp_img = cv2.flip(new_inp_img, 1)
@@ -37,9 +33,7 @@ while True:
                          new_gray, 
                          old_pts, 
                          None, maxLevel=1,
-                         criteria=(cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT,
-                                                         15, 0.08))
-
+                         criteria=(cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 15, 0.08))
     for i, j in zip(old_pts, new_pts):
         x,y = j.ravel()
         a,b = i.ravel()
@@ -62,13 +56,9 @@ while True:
                 cv2.FONT_HERSHEY_PLAIN, 2, (255,255,255))
     cv2.imshow("ouput", new_inp_img)
     cv2.imshow("result", mask)
-
-    
     gray_inp_img = new_gray.copy()
-    old_pts = new_pts.reshape(-1,1,2)
-    
+    old_pts = new_pts.reshape(-1,1,2)    
     if cv2.waitKey(1) & 0xff == 27:
-        break
-    
+        break    
 cv2.destroyAllWindows()
 cap.release()
